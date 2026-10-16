@@ -18,6 +18,13 @@
       <button id="agregar" type="submit">Agregar Producto</button>
     </form>
 
+    <h2>Editar producto</h2>
+    <form action="" method="post">
+      <input type="text" id="nombre-editar" placeholder="Ingrese el nombre" />
+      <input type="text" id="precio-editar" placeholder="Ingrese el precio" />
+      <button id="editar" type="submit">Editar Producto</button>
+    </form>
+
     <br />
     <h2>Lista de Productos</h2>
     <table id="tabla-productos" border="1">
@@ -94,10 +101,16 @@
     </table>
 
     <script>
+      // CREAR
       const nombreInput = document.getElementById("nombre");
       const precioInput = document.getElementById("precio");
       const agregarBtn = document.getElementById("agregar");
       const tablaProductos = document.getElementById("tabla-productos");
+
+      // EDITAR
+      const editarBtn = document.getElementById("editar");
+      const nombreEditarInput = document.getElementById("nombre-editar");
+      const precioEditarInput = document.getElementById("precio-editar");
 
       agregarBtn.addEventListener("click", function (event) {
         event.preventDefault();
@@ -129,6 +142,21 @@
         nuevaFila.appendChild(celdaEliminar);
 
         tablaProductos.querySelector("tbody").appendChild(nuevaFila);
+      });
+
+      editarBtn.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        const nombreEditar = nombreEditarInput.value.trim();
+        const precioEditar = precioEditarInput.value.trim();
+
+        if (!nombreEditar || !precioEditar) {
+          alert("Por favor, complete todos los campos para editar.");
+          return;
+        }
+
+        // Aquí puedes agregar la lógica para editar un producto existente en la tabla
+        // Por ejemplo, podrías buscar el producto por nombre y actualizar su precio
       });
     </script>
   </body>
