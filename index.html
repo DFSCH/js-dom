@@ -4,16 +4,68 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DOM con JavaScript</title>
+    <style>
+      .titulo-cambiado {
+        font-weight: bold;
+        color: red;
+      }
+    </style>
   </head>
   <body>
-    <h1 id="titulo">HOLA MUNDO!!</h1>
-
-    <button id="btn-cambiar">Cambiar texto</button>
-
+    <h2>Crear elemento</h2>
     <input id="nombre" type="text" placeholder="Escribe tu nombre" />
-    <p id="saludo"></p>
+    <input id="edad" type="number" placeholder="Escribe tu edad" />
+    <button id="btn-agregar">Agregar elemento</button>
+
+    <h2>Editar elemento</h2>
+    <input id="nombre_edit" type="text" placeholder="Escribe tu nombre" />
+    <input id="edad_edit" type="number" placeholder="Escribe tu edad" />
+    <button id="btn-editar">Editar elemento</button>
+
+    <h2>Listar elementos</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Edad</th>
+          <th>Editar</th>
+          <th>Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ana</td>
+          <td>25</td>
+          <td>Editar</td>
+          <td>Eliminar</td>
+        </tr>
+        <tr>
+          <td>Juan</td>
+          <td>30</td>
+          <td>Editar</td>
+          <td>Eliminar</td>
+        </tr>
+      </tbody>
+    </table>
 
     <script>
+      const btn = document.querySelector("#btn-agregar");
+
+      btn.addEventListener("click", () => {
+        const nombre = document.querySelector("#nombre").value;
+        const edad = document.querySelector("#edad").value;
+
+        if (nombre && edad) {
+          const nuevaFila = document.createElement("tr");
+          nuevaFila.innerHTML = `<td>${nombre}</td><td>${edad}</td>`;
+
+          const tbody = document.querySelector("tbody");
+          tbody.appendChild(nuevaFila);
+        } else {
+          alert("Por favor, completa ambos campos.");
+        }
+      });
+
       // 1. OBTENER elementos del DOM
       const titulo = document.getElementById("titulo");
       const boton = document.querySelector("#btn-cambiar");
@@ -26,7 +78,9 @@
       // 3. AÑADIR un evento y MODIFICAR el texto al hacer click
       boton.addEventListener("click", () => {
         titulo.textContent = "¡Texto cambiado con JS!";
-        titulo.style.color = "tomato";
+        titulo.style.fontSize = "20px";
+        titulo.style.color = "blue";
+        titulo.classList.add("titulo-cambiado");
       });
 
       // 4. Evento "input": se dispara cada vez que el usuario escribe

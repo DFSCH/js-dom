@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Mi Página Web</h1>
+    <p>Bienvenido a mi página web.</p>
+    <p>PRACTICANDO LOS METODOS CRUD</p>
+
+    <h2>Crear producto</h2>
+
+    <form action="" method="post">
+      <input type="text" id="nombre" placeholder="Ingrese el nombre" />
+      <input type="text" id="precio" placeholder="Ingrese el precio" />
+      <button id="agregar" type="submit">Agregar Producto</button>
+    </form>
+
+    <br />
+    <h2>Lista de Productos</h2>
+    <table id="tabla-productos" border="1">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Precio</th>
+          <th>Editar</th>
+          <th>Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Producto 1</td>
+          <td>25</td>
+          <td>
+            <button>Editar</button>
+          </td>
+          <td>
+            <button>Eliminar</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Producto 2</td>
+          <td>30</td>
+          <td>
+            <button>Editar</button>
+          </td>
+          <td>
+            <button>Eliminar</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Producto 3</td>
+          <td>15</td>
+          <td>
+            <button>Editar</button>
+          </td>
+          <td>
+            <button>Eliminar</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Producto 4</td>
+          <td>40</td>
+          <td>
+            <button>Editar</button>
+          </td>
+          <td>
+            <button>Eliminar</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Producto 5</td>
+          <td>20</td>
+          <td>
+            <button>Editar</button>
+          </td>
+          <td>
+            <button>Eliminar</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Producto 6</td>
+          <td>50</td>
+          <td>
+            <button>Editar</button>
+          </td>
+          <td>
+            <button>Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <script>
+      const nombreInput = document.getElementById("nombre");
+      const precioInput = document.getElementById("precio");
+      const agregarBtn = document.getElementById("agregar");
+      const tablaProductos = document.getElementById("tabla-productos");
+
+      agregarBtn.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        const nombre = nombreInput.value.trim();
+        const precio = precioInput.value.trim();
+
+        // alert("Producto agregado: " + nombre + " - Precio: " + precio);
+
+        if (!nombre || !precio) {
+          alert("Por favor, complete todos los campos.");
+          return;
+        }
+
+        const nuevaFila = document.createElement("tr");
+        const celdaNombre = document.createElement("td");
+        const celdaPrecio = document.createElement("td");
+        const celdaEditar = document.createElement("td");
+        const celdaEliminar = document.createElement("td");
+
+        celdaNombre.textContent = nombre;
+        celdaPrecio.textContent = precio;
+        celdaEditar.innerHTML = "<button>Editar</button>";
+        celdaEliminar.innerHTML = "<button>Eliminar</button>";
+
+        nuevaFila.appendChild(celdaNombre);
+        nuevaFila.appendChild(celdaPrecio);
+        nuevaFila.appendChild(celdaEditar);
+        nuevaFila.appendChild(celdaEliminar);
+
+        tablaProductos.querySelector("tbody").appendChild(nuevaFila);
+      });
+    </script>
+  </body>
+</html>
